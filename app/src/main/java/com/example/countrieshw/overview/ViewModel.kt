@@ -4,18 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.countrieshw.netWork.MarsApi
+import kotlinx.coroutines.launch
 
-class viewModel : ViewModel() {
+
+class ViewModel : ViewModel() {
 
     private val _status =  MutableLiveData<String>()
 
     val status: LiveData<String> = _status
     init {
-        getCountriesImag()
+        getCountriesImage()
     }
 
-    private fun getCountriesImag() {
-        viewModelScope.launch {
+     private fun getCountriesImage() {
+        viewModelScope.launch  {
             try {
                 val listResult = MarsApi.retrofitService.getPhotos()
                 _status.value = "Success: ${listResult.data.size} photos retrieved"
@@ -37,4 +39,3 @@ class viewModel : ViewModel() {
 
 
 
-}

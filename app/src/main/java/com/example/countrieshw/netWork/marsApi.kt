@@ -6,8 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
-class marsApi {
-}
+
 
 private const val BASE_URL = "https://countriesnow.space"
 
@@ -24,12 +23,10 @@ private val retrofit = Retrofit.Builder()
 interface MarsApiService {
 
     @GET("api/v0.1/countries/flag/images")
-    suspend fun getPhotos(): MarsPhoto
+    suspend fun getPhotos(): CountryRespose
 }
 
-/**
- * A public Api object that exposes the lazy-initialized Retrofit service
- */
+
 object MarsApi {
     val retrofitService: MarsApiService by lazy { retrofit.create(MarsApiService::class.java) }
 }
